@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ex-4</title>
+    <style>
+      body{
+        font-family: arial;
+      }
+      .onbutton{
+        background-color: rgb(25,135,84);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        font-size: large;
+      }
+
+      .offbutton{
+        background-color: rgb(220,53,69);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        font-size: large;
+      }
+
+      p{
+        font-size: large;
+      }
+
+      input{
+        padding: 8px ;
+        border-radius: 8px;
+        border-width: 1px;
+        margin-bottom: 8px;
+      }
+
+      button{
+        background-color: rgb(0,123,255);
+        border: none;
+        margin-left: 5px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        color: white;
+
+
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function Ex4({isButtonOn , setisButtonOn}){
+        function click(){
+          setisButtonOn(!isButtonOn);
+          console.log(isButtonOn);
+        }
+
+        return(
+          <>
+            <button 
+            className={isButtonOn ? 'onbutton' : 'offbutton'}
+            onClick={click}
+            >
+            {isButtonOn ? 'On' : 'Off'}
+            </button>
+          </>
+        );
+      }
+
+      function LoginForm(){
+
+        const [showPassword , setShowPassword ] = React.useState(false);
+
+        function show(){
+          setShowPassword(!showPassword);
+          console.log(showPassword);
+        }
+
+        return(
+          <>
+          <p>Hello, wellcome to my website</p>
+          <input type="text" placeholder='Email' /> <br />
+          <input type={ showPassword ? 'text' : "Password"} 
+          placeholder='Password' /> 
+          <button
+          onClick={show}
+          >
+          {showPassword ? 'Hide' : 'Show'}
+          </button> <br />
+          <button>Login</button>
+          <button>Sign up</button>
+          </>
+        );
+      }
+
+      function App(){
+        const [isButtonOn , setisButtonOn] = React.useState(true);
+
+
+
+
+        return(
+          <>
+            <LoginForm />
+
+            <Ex4 
+            isButtonOn={isButtonOn}
+            setisButtonOn={setisButtonOn}
+            />
+
+            
+
+          </>
+        );
+      }
+    
+      
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
